@@ -1,5 +1,8 @@
 ---
-title: "Probability Theory"
+title: Probability_Assignment1
+output:
+  quarto::html_document:
+    theme: readable
 ---
 
 ::: callout-note
@@ -85,13 +88,26 @@ code
 Add a language to syntax highlight code blocks:
 
 ```{r}
-1 + 1
-```
+library(tidyverse)
 
-```{r}
-cars
-```
+# Define probabilities
+P_S <- 0.3
+P_T_S <- 0.2
+P_T_S_Bar <- 0.6
 
-```{r}
-plot(cars)
-```
+# Calculate complementary probabilities
+P_S_Bar <- 1 - P_S
+P_T_Bar_S <- 1 - P_T_S
+P_T_Bar_S_Bar <- 1 - P_T_S_Bar
+
+# Calculate conditional probabilities
+P_T_inter_S <- P_S * P_T_S
+P_T_inter_S_Bar <- P_S_Bar * P_T_S_Bar
+P_T_Bar_inter_S <- P_S * P_T_Bar_S
+P_T_Bar_inter_S_Bar <- P_S_Bar * P_T_Bar_S_Bar
+
+# Print the results
+print(P_T_inter_S)
+print(P_T_inter_S_Bar)
+print(P_T_Bar_inter_S)
+print(P_T_Bar_inter_S_Bar)
