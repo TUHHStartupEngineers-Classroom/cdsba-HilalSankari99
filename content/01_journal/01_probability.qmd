@@ -1,5 +1,5 @@
 ---
-title: Your Quarto Document
+title: Probability_Assignment1
 output:
   quarto::html_document:
     theme: readable
