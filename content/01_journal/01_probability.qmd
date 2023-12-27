@@ -38,7 +38,7 @@ superscript^2^ / subscript~2~
 
 ![Caption](../../assets/img/elephant.png)
 
-[![Caption](../../assets/img/elephant.png)](https://quarto.org)
+[![Caption](../../assets/img/DAG1.png)](https://quarto.org)
 
 [![Caption](../../assets/img/elephant.png)](https://quarto.org "An elephant")
 

@@ -1,7 +1,108 @@
----
-title: "Directed Acyclic Graphs"
----
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+# Part1:Think about example from previous chapter (parking spots) and draw the DAG.
+Load necessary libraries
+```{r}
+library(tidyverse)    # For data manipulation and visualization
+library(dagitty)      # For working with Directed Acyclic Graphs (DAGs)
+library(ggdag)        # For DAG visualization with ggplot2
+
+# Construct DAG for Sales Example
+sales_graph <- dagify(
+  product_sales ~ parking_capacity,
+  product_sales ~ store_location,
+  parking_capacity ~ store_location, # store_location acts as the confounding variable
+  labels = c(
+    "product_sales" = "Product Sales",
+    "parking_capacity" = "Parking \n Capacity",
+    "store_location" = "Store Location"
+  )
+)
+ggdag(sales_graph, use_labels = "label", text = FALSE)
+```
+# Part2.1
+Load the data file customer_sat.rds. A company sells a SaaS (Software as a service) to business clients that chose to subscribe to one of the three subscription levels, Starter, Premium or Elite, which provide different features at different price points (more storage and other capabilities). Starter has the least functionality, while Elite includes the most features.
+
+Now imagine, you are working as an analyst for that company and are asked to examine the relationship between follow-up calls to the clients and their satisfaction with the product and service. Follow-up calls are voluntary and are just to help the client with possible problems and so on. Satisfaction is measured on a weekly basis by surveying the clients.
+
+In the data, you find three variables: satisfaction, follow_ups and subscription. Perform the following steps:
+
+
+```{r}
+#Load the customer satisfaction data
+customer_data <- readRDS('C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/customer_sat.rds')
+customer_data
+# Explore the data
+head(customer_data)
+
+
+# Fit a regression model: satisfaction ~ follow-ups
+
+## Simple linear Regression ##
+model_unadjusted <- lm(satisfaction ~ follow_ups, data = customer_data)
+
+summary(model_unadjusted)
+
+
+```
+# Part2.2
+```{r}
+# Fit a regression model: satisfaction ~ follow-ups + subscription
+
+## Multiple Linear Regression
+model_adjusted <- lm(satisfaction ~ follow_ups + subscription, data = customer_data)
+
+summary(model_adjusted)
+```
+
+# Part3: Compare coefficients from the two models
+```{r}
+coef_comparison <- data.frame(
+  Model = c("Model 1", "Model 2"),
+  Intercept = c(coef(model_unadjusted)[1], coef(model_adjusted)[1]),
+  FollowUps = c(coef(model_unadjusted)[2], coef(model_adjusted)[2]),
+  PremiumPlus = c(0, coef(model_adjusted)[grep("subscription_typePremium\\+", names(coef(model_adjusted)))]),
+  Elite = c(0, coef(model_adjusted)[grep("subscription_typeElite", names(coef(model_adjusted)))])
+)
+
+print(coef_comparison)
+
+```
+
+Model 2 exhibits a lower baseline satisfaction compared to Model 1, attributed to its reduced intercept.
+Incorporating subscription information altered the direction of the association between Follow-ups and satisfaction, shifting it from negative to positive.
+PremiumPlus subscription has a positive influence on satisfaction, while there is no supplementary effect observed for the Elite subscription level.")
+
+
+# Part4:Visualize the data
+
+```{r}
+### Simpson's Paradox: Subscription as the Confounding Variable ###
+
+
+## Without conditioning on subscription
+
+simps_not_cond <- ggplot(customer_data, aes(x = follow_ups, y = satisfaction)) +
+  geom_point(alpha = 0.8) +
+  stat_smooth(method = "lm", se = F) +
+  labs(title = "Relationship between Follow-ups and Satisfaction",
+       x = "Follow-up Calls",
+       y = "Customer Satisfaction") +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+
+## Conditioning on subscription
+
+simps_cond <- ggplot(customer_data, aes(x = follow_ups, y = satisfaction, color = subscription)) +
+  geom_point(alpha = 0.8) +
+  stat_smooth(method = "lm", se = F, size = 1) +
+  labs(title = "Relationship between Follow-ups and Satisfaction by Subscription Type",
+       x = "Follow-up Calls",
+       y = "Customer Satisfaction",
+       color = "Subscription Type") +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+simps_not_cond
+simps_cond
+```
