@@ -8,7 +8,7 @@
 
 <meta name="author" content="Oliver Mork">
 
-<title>MyLabJournal - Probability Theory</title>
+<title>MyLabJournal - Probability_Assignment1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,9 +43,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-
-<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -201,6 +161,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">4</span> Lists</a></li>
   <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">5</span> Tables</a></li>
   <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">6</span> Source Code</a></li>
+  <li><a href="#define-probabilities" id="toc-define-probabilities" class="nav-link" data-scroll-target="#define-probabilities"><span class="header-section-number">7</span> Define probabilities</a></li>
+  <li><a href="#calculate-complementary-probabilities" id="toc-calculate-complementary-probabilities" class="nav-link" data-scroll-target="#calculate-complementary-probabilities"><span class="header-section-number">8</span> Calculate complementary probabilities</a></li>
+  <li><a href="#calculate-conditional-probabilities" id="toc-calculate-conditional-probabilities" class="nav-link" data-scroll-target="#calculate-conditional-probabilities"><span class="header-section-number">9</span> Calculate conditional probabilities</a></li>
+  <li><a href="#print-the-results" id="toc-print-the-results" class="nav-link" data-scroll-target="#print-the-results"><span class="header-section-number">10</span> Print the results</a></li>
   </ul>
 </nav>
     </div>
@@ -209,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Probability Theory</h1>
+<h1 class="title">Probability_Assignment1</h1>
 </div>
 
 
@@ -366,33 +330,23 @@ Note
 <p>Use ``` to delimit blocks of source code:</p>
 <pre><code>code</code></pre>
 <p>Add a language to syntax highlight code blocks:</p>
-<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-1_5e4cfbc3475ea61080071abc57644d75">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 2</code></pre>
-</div>
-</div>
-<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-2_15ddc482b8b5430e880cf39bb16d6264">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["speed"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["dist"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"2"},{"1":"4","2":"10"},{"1":"7","2":"4"},{"1":"7","2":"22"},{"1":"8","2":"16"},{"1":"9","2":"10"},{"1":"10","2":"18"},{"1":"10","2":"26"},{"1":"10","2":"34"},{"1":"11","2":"17"},{"1":"11","2":"28"},{"1":"12","2":"14"},{"1":"12","2":"20"},{"1":"12","2":"24"},{"1":"12","2":"28"},{"1":"13","2":"26"},{"1":"13","2":"34"},{"1":"13","2":"34"},{"1":"13","2":"46"},{"1":"14","2":"26"},{"1":"14","2":"36"},{"1":"14","2":"60"},{"1":"14","2":"80"},{"1":"15","2":"20"},{"1":"15","2":"26"},{"1":"15","2":"54"},{"1":"16","2":"32"},{"1":"16","2":"40"},{"1":"17","2":"32"},{"1":"17","2":"40"},{"1":"17","2":"50"},{"1":"18","2":"42"},{"1":"18","2":"56"},{"1":"18","2":"76"},{"1":"18","2":"84"},{"1":"19","2":"36"},{"1":"19","2":"46"},{"1":"19","2":"68"},{"1":"20","2":"32"},{"1":"20","2":"48"},{"1":"20","2":"52"},{"1":"20","2":"56"},{"1":"20","2":"64"},{"1":"22","2":"66"},{"1":"23","2":"54"},{"1":"24","2":"70"},{"1":"24","2":"92"},{"1":"24","2":"93"},{"1":"24","2":"120"},{"1":"25","2":"85"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-3_309d9a6462ce7f52bf5764543dea986e">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="01_probability_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_probability_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-</div>
+<p>library(tidyverse)</p>
+</section>
+<section id="define-probabilities" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Define probabilities</h1>
+<p>P_S &lt;- 0.3 P_T_S &lt;- 0.2 P_T_S_Bar &lt;- 0.6</p>
+</section>
+<section id="calculate-complementary-probabilities" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Calculate complementary probabilities</h1>
+<p>P_S_Bar &lt;- 1 - P_S P_T_Bar_S &lt;- 1 - P_T_S P_T_Bar_S_Bar &lt;- 1 - P_T_S_Bar</p>
+</section>
+<section id="calculate-conditional-probabilities" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Calculate conditional probabilities</h1>
+<p>P_T_inter_S &lt;- P_S * P_T_S P_T_inter_S_Bar &lt;- P_S_Bar * P_T_S_Bar P_T_Bar_inter_S &lt;- P_S * P_T_Bar_S P_T_Bar_inter_S_Bar &lt;- P_S_Bar * P_T_Bar_S_Bar</p>
+</section>
+<section id="print-the-results" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Print the results</h1>
+<p>print(P_T_inter_S) print(P_T_inter_S_Bar) print(P_T_Bar_inter_S) print(P_T_Bar_inter_S_Bar)</p>
 
 
 </section>
@@ -747,7 +701,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":true,"openEffect":"zoom"});</script>
 
 
 
