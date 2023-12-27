@@ -14,20 +14,6 @@
     "text": "How to use\n\nAccept the assignment and get your own github repo.\nBlog/journal what you are doing in R, by editing the .qmd files.\nSee the links page for lots of helpful links on learning R.\nChange everything to make it your own.\nMake sure to render you website every time before you want to upload changes."
   },
   {
-    "objectID": "content/01_journal/02_statistics.html",
-    "href": "content/01_journal/02_statistics.html",
-    "title": "Statistical Concepts",
-    "section": "",
-    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
-  },
-  {
-    "objectID": "content/01_journal/04_causality.html",
-    "href": "content/01_journal/04_causality.html",
-    "title": "Causality",
-    "section": "",
-    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
-  },
-  {
     "objectID": "content/01_journal/09_iv.html",
     "href": "content/01_journal/09_iv.html",
     "title": "Instrumental Variables",
@@ -44,7 +30,42 @@
   {
     "objectID": "content/01_journal/05_dag.html",
     "href": "content/01_journal/05_dag.html",
-    "title": "Directed Acyclic Graphs",
+    "title": "1 Part1:Think about example from previous chapter (parking spots) and draw the DAG.",
+    "section": "",
+    "text": "1 Part1:Think about example from previous chapter (parking spots) and draw the DAG.\nLoad necessary libraries\n\nlibrary(tidyverse)    # For data manipulation and visualization\n\n#&gt; ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n#&gt; ✔ dplyr     1.1.3     ✔ readr     2.1.4\n#&gt; ✔ forcats   1.0.0     ✔ stringr   1.5.0\n#&gt; ✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n#&gt; ✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n#&gt; ✔ purrr     1.0.2     \n#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n#&gt; ✖ dplyr::filter() masks stats::filter()\n#&gt; ✖ dplyr::lag()    masks stats::lag()\n#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(dagitty)      # For working with Directed Acyclic Graphs (DAGs)\nlibrary(ggdag)        # For DAG visualization with ggplot2\n\n#&gt; \n#&gt; Attaching package: 'ggdag'\n#&gt; \n#&gt; The following object is masked from 'package:stats':\n#&gt; \n#&gt;     filter\n\n# Construct DAG for Sales Example\nsales_graph &lt;- dagify(\n  product_sales ~ parking_capacity,\n  product_sales ~ store_location,\n  parking_capacity ~ store_location, # store_location acts as the confounding variable\n  labels = c(\n    \"product_sales\" = \"Product Sales\",\n    \"parking_capacity\" = \"Parking \\n Capacity\",\n    \"store_location\" = \"Store Location\"\n  )\n)\nggdag(sales_graph, use_labels = \"label\", text = FALSE)\n\n\n\n\n\n\n\n\n\n\n2 Part2.1\nLoad the data file customer_sat.rds. A company sells a SaaS (Software as a service) to business clients that chose to subscribe to one of the three subscription levels, Starter, Premium or Elite, which provide different features at different price points (more storage and other capabilities). Starter has the least functionality, while Elite includes the most features.\nNow imagine, you are working as an analyst for that company and are asked to examine the relationship between follow-up calls to the clients and their satisfaction with the product and service. Follow-up calls are voluntary and are just to help the client with possible problems and so on. Satisfaction is measured on a weekly basis by surveying the clients.\nIn the data, you find three variables: satisfaction, follow_ups and subscription. Perform the following steps:\n\n#Load the customer satisfaction data\ncustomer_data &lt;- readRDS('C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/customer_sat.rds')\ncustomer_data\n\n\n\n  \n\n\n# Explore the data\nhead(customer_data)\n\n\n\n  \n\n\n# Fit a regression model: satisfaction ~ follow-ups\n\n## Simple linear Regression ##\nmodel_unadjusted &lt;- lm(satisfaction ~ follow_ups, data = customer_data)\n\nsummary(model_unadjusted)\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = satisfaction ~ follow_ups, data = customer_data)\n#&gt; \n#&gt; Residuals:\n#&gt;     Min      1Q  Median      3Q     Max \n#&gt; -12.412  -5.257   1.733   4.506  12.588 \n#&gt; \n#&gt; Coefficients:\n#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)  78.8860     4.2717  18.467 1.04e-10 ***\n#&gt; follow_ups   -3.3093     0.6618  -5.001 0.000243 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 7.923 on 13 degrees of freedom\n#&gt; Multiple R-squared:  0.658,  Adjusted R-squared:  0.6316 \n#&gt; F-statistic: 25.01 on 1 and 13 DF,  p-value: 0.0002427\n\n\n\n\n3 Part2.2\n\n# Fit a regression model: satisfaction ~ follow-ups + subscription\n\n## Multiple Linear Regression\nmodel_adjusted &lt;- lm(satisfaction ~ follow_ups + subscription, data = customer_data)\n\nsummary(model_adjusted)\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = satisfaction ~ follow_ups + subscription, data = customer_data)\n#&gt; \n#&gt; Residuals:\n#&gt;     Min      1Q  Median      3Q     Max \n#&gt; -4.3222 -2.1972  0.3167  2.2667  3.9944 \n#&gt; \n#&gt; Coefficients:\n#&gt;                      Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)           26.7667     6.6804   4.007  0.00206 ** \n#&gt; follow_ups             2.1944     0.7795   2.815  0.01682 *  \n#&gt; subscriptionPremium   44.7222     5.6213   7.956 6.88e-06 ***\n#&gt; subscriptionPremium+  18.0722     2.1659   8.344 4.37e-06 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 2.958 on 11 degrees of freedom\n#&gt; Multiple R-squared:  0.9597, Adjusted R-squared:  0.9487 \n#&gt; F-statistic: 87.21 on 3 and 11 DF,  p-value: 5.956e-08\n\n\n\n\n4 Part3: Compare coefficients from the two models\n\ncoef_comparison &lt;- data.frame(\n  Model = c(\"Model 1\", \"Model 2\"),\n  Intercept = c(coef(model_unadjusted)[1], coef(model_adjusted)[1]),\n  FollowUps = c(coef(model_unadjusted)[2], coef(model_adjusted)[2]),\n  PremiumPlus = c(0, coef(model_adjusted)[grep(\"subscription_typePremium\\\\+\", names(coef(model_adjusted)))]),\n  Elite = c(0, coef(model_adjusted)[grep(\"subscription_typeElite\", names(coef(model_adjusted)))])\n)\n\nprint(coef_comparison)\n\n#&gt;     Model Intercept FollowUps PremiumPlus Elite\n#&gt; 1 Model 1  78.88605 -3.309302           0     0\n#&gt; 2 Model 2  26.76667  2.194444           0     0\n\n\nModel 2 exhibits a lower baseline satisfaction compared to Model 1, attributed to its reduced intercept. Incorporating subscription information altered the direction of the association between Follow-ups and satisfaction, shifting it from negative to positive. PremiumPlus subscription has a positive influence on satisfaction, while there is no supplementary effect observed for the Elite subscription level.”)\n\n\n5 Part4:Visualize the data\n\n### Simpson's Paradox: Subscription as the Confounding Variable ###\n\n\n## Without conditioning on subscription\n\nsimps_not_cond &lt;- ggplot(customer_data, aes(x = follow_ups, y = satisfaction)) +\n  geom_point(alpha = 0.8) +\n  stat_smooth(method = \"lm\", se = F) +\n  labs(title = \"Relationship between Follow-ups and Satisfaction\",\n       x = \"Follow-up Calls\",\n       y = \"Customer Satisfaction\") +\n  theme_minimal() +\n  theme(legend.position = \"right\")\n\n\n## Conditioning on subscription\n\nsimps_cond &lt;- ggplot(customer_data, aes(x = follow_ups, y = satisfaction, color = subscription)) +\n  geom_point(alpha = 0.8) +\n  stat_smooth(method = \"lm\", se = F, size = 1) +\n  labs(title = \"Relationship between Follow-ups and Satisfaction by Subscription Type\",\n       x = \"Follow-up Calls\",\n       y = \"Customer Satisfaction\",\n       color = \"Subscription Type\") +\n  theme_minimal() +\n  theme(legend.position = \"right\")\n\n#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\n#&gt; ℹ Please use `linewidth` instead.\n\nsimps_not_cond\n\n#&gt; `geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nsimps_cond\n\n#&gt; `geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "content/01_journal/03_regression.html",
+    "href": "content/01_journal/03_regression.html",
+    "title": "Regression and Statistical Inference",
+    "section": "",
+    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
+  },
+  {
+    "objectID": "content/01_journal/01_probability.html",
+    "href": "content/01_journal/01_probability.html",
+    "title": "Probability_Assignment1",
+    "section": "",
+    "text": "Note\n\n\n\nYou can delete everything in here and start fresh.\nThis is a .qmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a # in front of your text, it will create a top level-header.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "content/01_journal/01_probability.html#header-2",
+    "href": "content/01_journal/01_probability.html#header-2",
+    "title": "Probability_Assignment1",
+    "section": "2.1 Header 2",
+    "text": "2.1 Header 2\n\nHeader 3\n\nHeader 4\n\nHeader 5\n\nHeader 6"
+  },
+  {
+    "objectID": "content/01_journal/02_statistics.html",
+    "href": "content/01_journal/02_statistics.html",
+    "title": "Statistical Concepts",
+    "section": "",
+    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
+  },
+  {
+    "objectID": "content/01_journal/04_causality.html",
+    "href": "content/01_journal/04_causality.html",
+    "title": "Causality",
     "section": "",
     "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
   },
@@ -59,27 +80,6 @@
     "objectID": "content/01_journal/08_did.html",
     "href": "content/01_journal/08_did.html",
     "title": "Difference-in-Differences",
-    "section": "",
-    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
-  },
-  {
-    "objectID": "content/01_journal/01_probability.html",
-    "href": "content/01_journal/01_probability.html",
-    "title": "Probability Theory",
-    "section": "",
-    "text": "Note\n\n\n\nYou can delete everything in here and start fresh.\nThis is a .qmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a # in front of your text, it will create a top level-header.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "content/01_journal/01_probability.html#header-2",
-    "href": "content/01_journal/01_probability.html#header-2",
-    "title": "Probability Theory",
-    "section": "\n2.1 Header 2",
-    "text": "2.1 Header 2\nHeader 3\nHeader 4\nHeader 5\nHeader 6"
-  },
-  {
-    "objectID": "content/01_journal/03_regression.html",
-    "href": "content/01_journal/03_regression.html",
-    "title": "Regression and Statistical Inference",
     "section": "",
     "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
   },
