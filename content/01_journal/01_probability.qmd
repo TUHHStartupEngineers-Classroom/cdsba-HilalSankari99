@@ -1,95 +1,22 @@
 ---
-title: Probability_Assignment1
-output:
-  quarto::html_document:
-    theme: readable
+title: "Probability- Assignment1"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
+
 ---
+----
+```{r}
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+# Load Libraries
 
-This is a `.qmd` file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-# Text Formatting
-
-*italics* and **bold**
-
-superscript^2^ / subscript~2~
-
-~~strikethrough~~
-
-`verbatim code`
-
-> Blockquote
-
-# Headings
-
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
-
-# Links & Images
-
-<https://quarto.org>
-
-[Quarto](https://quarto.org)
-
-![Caption](../../assets/img/elephant.png)
-
-[![Caption](../../assets/img/DAG1.png)](https://quarto.org)
-
-[![Caption](../../assets/img/elephant.png)](https://quarto.org "An elephant")
-
-
-# Lists
-
-* unordered list
-    + sub-item 1
-    + sub-item 2
-        - sub-sub-item 1
-        
-*   item 2
-
-    Continued (indent 4 spaces)
-    
-    
-1. ordered list
-2. item 2
-    i) sub-item 1
-         A.  sub-sub-item 1
-         
-(@)  A list whose numbering
-
-continues after
-
-(@)  an interruption
-
-# Tables
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
-
-# Source Code
-
-Use ``` to delimit blocks of source code:
-
+library(tidyverse)
 ```
-code
-```
-
-Add a language to syntax highlight code blocks:
+# **Assignment1**
 
 ```{r}
-library(tidyverse)
-
 # Define probabilities
 P_S <- 0.3
 P_T_S <- 0.2
@@ -105,9 +32,116 @@ P_T_inter_S <- P_S * P_T_S
 P_T_inter_S_Bar <- P_S_Bar * P_T_S_Bar
 P_T_Bar_inter_S <- P_S * P_T_Bar_S
 P_T_Bar_inter_S_Bar <- P_S_Bar * P_T_Bar_S_Bar
+```
+#### **Assignment1           Results**
+```{r}
+#| code-fold: true
+cat("P_T_inter_S:",P_T_inter_S)
+cat("P_T_inter_S_Bar",P_T_inter_S_Bar)
+cat("P_T_Bar_inter_S",P_T_Bar_inter_S)
+cat("P_T_Bar_inter_S_Bar",P_T_Bar_inter_S_Bar)
+```
 
-# Print the results
-print(P_T_inter_S)
-print(P_T_inter_S_Bar)
-print(P_T_Bar_inter_S)
-print(P_T_Bar_inter_S_Bar)
+# **Assignment2**
+
+#### **Fill in the Dataset**
+```{r}
+# Number of obervations
+n <- 1000
+
+# Create tibble
+app_usage <- tibble(
+  # Create user_id in increasing order
+  user_id = 1:n,
+  # Randomly sample if smartphone was used
+  smartphone = rbinom(n, 1, 0.4),
+  # Sample if tablet was used. More likely if smartphone was not used.
+  tablet = ifelse(smartphone == 1, rbinom(n, 1, 0.2), rbinom(n, 1, 0.5)),
+  # Sample if computer was used. More likely if tablet was not used.
+  computer = ifelse(tablet == 1, rbinom(n, 1, 0.1), rbinom(n, 1, 0.3))
+)
+# If no device has value of 1, we set smartphone to 1
+app_usage <- app_usage %>%
+  rowwise() %>% 
+  mutate(smartphone = ifelse(sum(smartphone, tablet, computer) == 0, 1, smartphone))
+```
+#### **Preview of the Dataset**
+```{r}
+#| code-fold: true
+# Show first ten lines
+head(app_usage, 10)
+```
+#### **Show column sums**
+```{r}
+#| code-fold: true
+colSums(app_usage)
+```
+#### **Create the sets needed**
+
+```{r}
+# Set of phone, tablet and computer users
+set_phon <- which(app_usage$smartphone == 1)
+set_tabl <- which(app_usage$tablet == 1)
+set_comp <- which(app_usage$computer == 1)
+
+# List of all sets
+sets_all <- list(set_phon, set_tabl, set_comp)
+```
+#### **Load additional package for plotting Venn diagrams**
+```{r}
+library(ggVennDiagram)
+```
+#### **Plot Venn Diagram**
+```{r}
+#| code-fold: true
+ggVennDiagram(sets_all, category.names = c("Smartphone", "Tablet", "Computer"),
+              label_percent_digit = 2) +
+  # Customizing appearance
+  theme(legend.position = "none", 
+        panel.background = element_rect("grey"),
+        strip.background = element_rect("grey")) +
+  scale_x_continuous(expand = expansion(mult = .24))
+```
+#### **Assignment 2 Results**
+```{r}
+# Calculate the intersection of sets (users using all three devices)
+set_all_three <- Reduce(intersect, sets_all)
+percentage_all_three <- length(set_all_three) / n * 100
+cat("Percentage of customers using all three devices:", round(percentage_all_three, 2), "%\n")
+```
+```{r}
+# Calculate the union of sets (users using at least two devices)
+set_at_least_two <- union(intersect(set_phon, set_tabl), union(intersect(set_phon, set_comp), intersect(set_comp, set_tabl)))
+percentage_at_least_two <- length(set_at_least_two) / n * 100
+cat("Percentage of customers using at least two devices:", round(percentage_at_least_two, 2), "%\n")
+```
+```{r}
+# Calculate the sets of users using each device exclusively
+set_only_phon <- set_phon[!(set_phon %in% set_tabl) & !(set_phon %in% set_comp)]
+set_only_tabl <- set_tabl[!(set_tabl %in% set_phon) & !(set_tabl %in% set_comp)]
+set_only_comp <- set_comp[!(set_comp %in% set_phon) & !(set_comp %in% set_tabl)]
+percentage_only_one <- (length(set_only_phon) + length(set_only_tabl) + length(set_only_comp)) / n * 100
+cat("Percentage of customers using only one device:", round(percentage_only_one, 2), "%\n")
+``` 
+
+# **Assignment2**
+#### **Initialize data**
+```{r}
+P_A <- 0.04
+P_B_A <- 0.97
+P_B_A_Bar <- 0.99
+```
+#### **Calculation**
+```{r}
+P_A_Bar <- 1- P_A
+P_B_Bar_A <- 1 - P_B_A
+P_B_Bar_A_Bar <- 1 - P_B_A_Bar
+P_B <- (P_B_A*P_A)+(P_B_A_Bar*P_A_Bar)
+P_A_Bar_knowing_B <- (P_B_A_Bar * P_A_Bar)/P_B
+P_A_knowing_B <- (P_B_A * P_A)/P_B
+```
+#### **Assignment3 Results**
+```{r}
+print(P_A_Bar_knowing_B)
+print(P_A_knowing_B)
+```

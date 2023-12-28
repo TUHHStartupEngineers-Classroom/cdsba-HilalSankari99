@@ -1,7 +1,41 @@
 ---
-title: "Causality"
----
+title: "Causality - Assignment 4"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
 
-::: callout-note
-You can delete everything in here and start fresh.
+---
+::: {.callout-important appearance="minimal"}
+the correlation between the consumption of chocolate and the number of Nobel laureates in a country. While these two variables 
+might seem unrelated, there could be a spurious correlation due to a common third variable, such as the country's level of 
+:::
+```{r}
+# Generate a sample dataset (replace this with your actual dataset)
+set.seed(789)
+countries <- c("USA", "Sweden", "Switzerland", "Belgium", "Norway")
+chocolate_consumption <- rnorm(length(countries), mean = 5, sd = 2)
+nobel_laureates <- rpois(length(countries), lambda = 5)
+education_years <- rnorm(length(countries), mean = 12, sd = 2)
+
+# Create a dataframe
+data <- data.frame(Country = countries, ChocolateConsumption = chocolate_consumption, NobelLaureates = nobel_laureates, EducationYears = education_years)
+
+# Load necessary libraries
+library(ggplot2)
+
+# Plotting
+ggplot(data, aes(x = ChocolateConsumption, y = NobelLaureates, color = EducationYears)) +
+  geom_point() +
+  labs(title = "Spurious Correlation: Chocolate Consumption vs Nobel Laureates",
+       x = "Chocolate Consumption",
+       y = "Nobel Laureates",
+       color = "Education Years") +
+  theme_minimal()
+```
+
+::: {.callout-important appearance="minimal"}
+#In this example, the scatter plot is colored by the average years of education in each country. The idea is to highlight 
+#that the correlation between chocolate consumption and Nobel laureates may be influenced by the level of education in a country.
 :::

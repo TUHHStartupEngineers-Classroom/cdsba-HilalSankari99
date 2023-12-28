@@ -1,7 +1,118 @@
 ---
-title: "Statistical Concepts"
----
+title: "Statistical Concepts- Assignment2"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
 
-::: callout-note
-You can delete everything in here and start fresh.
+---
+```{r}
+# Load data
+random_vars <- readRDS("C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/random_vars.rds")
+```
+# **Part1**
+#### **Set age and icome sets**
+```{r}
+age_var <- random_vars$age
+income_var <- random_vars$income
+```
+# **Part1.1**
+```{r}
+# 1.Expected Value
+expected_value_age <- sum(age_var) / length(age_var)
+expected_value_income <- sum(income_var) / length(income_var)
+```
+#### **Part1.1 Results**
+```{r}
+#| code-fold: true
+cat("Expected age Value:", expected_value_age, "\n")
+cat("Expected income Value:", expected_value_income, "\n")
+```
+# **Part1.2**
+```{r}
+#2.Variance
+mean_value_age <- mean(age_var)
+mean_value_income <- mean(income_var)
+variance_value_age <- sum((age_var - mean_value_age)^2) / (length(age_var) - 1)
+variance_value_income<- sum((income_var - mean_value_income)^2) / (length(income_var) - 1)
+```
+#### **Part1.2 Results**
+```{r}
+#| code-fold: true
+cat("Variance age Value:", variance_value_age, "\n")
+cat("Variance income Value:", variance_value_income, "\n")
+```
+# **Part1.3**
+```{r}
+#3.Standard Deviation
+standard_deviation_value_age <- sqrt(variance_value_age)
+standard_deviation_value_income <- sqrt(variance_value_income)
+```
+#### **Part1.3 Results**
+```{r}
+#| code-fold: true
+cat("Standard Deviation age Value:", standard_deviation_value_age, "\n")
+cat("Standard Deviation income Value:", standard_deviation_value_income, "\n")
+```
+# **Part2**
+#### **Comparing Standard Deviation**
+::: {.callout-important appearance="minimal"}
+Comparing standard deviations directly is most meaningful when the variables are measured in the same units and have similar scales. In the case of age and income, these two variables have different units and different scales. Therefore, comparing their standard deviations directly may not provide meaningful insights.
 :::
+# **Part3.1**
+#### **Covariance**
+```{r}
+covariance_value <- sum((age_var - mean_value_age) * (income_var - mean_value_income)) / length(age_var)
+```
+#### **Part3.1 Results**
+```{r}
+#| code-fold: true
+cat("Covariance Value:", covariance_value, "\n")
+```
+# **Part3.2**
+#### **Correlation**
+```{r}
+correlation_value <- covariance_value / (standard_deviation_value_age*standard_deviation_value_income)
+```
+#### **Part3.1 Results**
+```{r}
+#| code-fold: true
+cat("Correlation Value:", correlation_value, "\n")
+```
+# **Part4**
+::: {.callout-important appearance="minimal"}
+The correlation coefficient's standardized scale makes it more intuitive for comparison. The fact that it ranges from -1 to 1 allows for a clear understanding of the strength and direction of the relationship.
+:::
+# **Part5.1**
+#### **conditional expected value, E[income|age<=18]**
+```{r}
+subset_data1 <- subset(random_vars, age <= 18)
+conditional_expected_value1 <- mean(subset_data1$income)
+```
+#### **Part5.1 Results**
+```{r}
+#| code-fold: true
+cat("Conditional Expected Value of Income for age <= 18:", conditional_expected_value1, "\n")
+```
+# **Part5.2**
+#### **conditional expected value, E[income|age<=[18,65)]**
+```{r}
+subset_data2 <- subset(random_vars, age >= 18 & age < 65)
+conditional_expected_value2 <- mean(subset_data2$income)
+```
+#### **Part5.2 Results**
+```{r}
+#| code-fold: true
+cat("Conditional Expected Value of Income for age in [18, 65):", conditional_expected_value2, "\n")
+```
+# **Part5.2**
+#### **conditional expected value, E[income|age>=65]**
+```{r}
+subset_data3 <- subset(random_vars, age >= 65)
+conditional_expected_value3 <- mean(subset_data3$income)
+```
+```{r}
+#| code-fold: true
+cat("Conditional Expected Value of Income for age >= 65:", conditional_expected_value3, "\n")
+```

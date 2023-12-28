@@ -1,7 +1,102 @@
 ---
-title: "Randomized Controlled Trials"
----
+title: "Randomized Controlled Trials - Assignment 6"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
 
-::: callout-note
-You can delete everything in here and start fresh.
+---
+# **Part1**
+```{r}
+# Load necessary libraries
+library(ggplot2)
+```
+```{r}
+customer_data <- readRDS("C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/abtest_online.rds")
+customer_data
+```
+```{r}
+compare_purchase_amount <- 
+  ggplot(customer_data, 
+         aes(x = chatbot, 
+             y = purchase_amount, 
+             color = as.factor(chatbot))) +
+  stat_summary(geom = "errorbar", 
+               width = .5,
+               fun.data = "mean_se", 
+               fun.args = list(mult=1.96),
+               show.legend = F) +
+  labs(x = NULL, y = "purchase_amount", title = "Difference in purchase amount")+
+  scale_x_discrete(labels = c("Not Treated","Treated"))
+compare_previous_visit <- 
+  ggplot(customer_data, 
+         aes(x = chatbot, 
+             y = previous_visit, 
+             color = as.factor(chatbot))) +
+  stat_summary(geom = "errorbar", 
+               width = .5,
+               fun.data = "mean_se", 
+               fun.args = list(mult=1.96),
+               show.legend = F) +
+  labs(x = NULL, y = "previous_visit", title = "Difference in previous visit")+
+  scale_x_discrete(labels = c("Not Treated","Treated"))
+compare_mobile_device <- 
+  ggplot(customer_data, 
+         aes(x = chatbot, 
+             y = mobile_device, 
+             color = as.factor(chatbot))) +
+  stat_summary(geom = "errorbar", 
+               width = .5,
+               fun.data = "mean_se", 
+               fun.args = list(mult=1.96),
+               show.legend = F) +
+  labs(x = NULL, y = "mobile_device", title = "Difference in mobile device")+
+  scale_x_discrete(labels = c("Not Treated","Treated"))
+compare_purchase <- 
+  ggplot(customer_data, 
+         aes(x = chatbot,
+             y = purchase, 
+             color = as.factor(chatbot))) +
+  stat_summary(geom = "errorbar", 
+               width = .5,
+               fun.data = "mean_se", 
+               fun.args = list(mult=1.96),
+               show.legend = F) +
+  labs(x = NULL, y = "purchase", title = "Difference in purchase")+
+  scale_x_discrete(labels = c("Not Treated","Treated"))
+```
+```{r}
+# Plot 
+compare_purchase_amount
+compare_previous_visit
+compare_mobile_device
+compare_purchase
+```
+# **Part2**
+```{r}
+lm1 <- lm(purchase ~ chatbot, data = customer_data)
+summary(lm1)
+lm2 <- lm(purchase_amount ~ chatbot, data = customer_data)
+summary(lm2)
+```
+# **Part3**
+```{r}
+lm_mod1 <- lm(purchase ~ chatbot * mobile_device, data = customer_data)
+summary(lm_mod1)
+lm_mod2 <- lm(purchase_amount ~ chatbot * mobile_device, data = customer_data)
+summary(lm_mod2)
+```
+# **Part4**
+```{r}
+# Logistic regression model
+logistic_model <- glm(purchase ~ chatbot, family = binomial(link = 'logit'), data = customer_data)
+
+# Display summary of the logistic regression model
+summary(logistic_model)
+```
+::: {.callout-important appearance="minimal"}
+The chatbotTRUE coefficient is of particular interest. Since it has a negative estimate, it suggests that, compared to when the chatbot is not present, the presence of the chatbot is associated with a decrease in the log-odds of making a purchase. The p-value being less than 0.001 indicates that this effect is statistically significant.
+In simpler terms, the model suggests that customers are less likely to make a purchase when the chatbot is present, and this effect is unlikely to be due to random chance.
+Lastly, the null and residual deviances and the AIC (Akaike Information Criterion) are model fit statistics. Lower AIC values generally indicate better-fitting models. In this case, the residual deviance is 1273.3 on 998 degrees of freedom, and the AIC is 1277.3
 :::

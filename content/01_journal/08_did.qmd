@@ -1,7 +1,77 @@
 ---
-title: "Difference-in-Differences"
----
+title: "Difference-in-Differences - Assignment 8"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+---
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(readr)
+library(lmtest)
+```
+```{r}
+# Load the data
+data <- readRDS("C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/hospdd.rds")
+```
+# **Part1**
+```{r}
+# Define treatment introduction month and hospital threshold
+introduction_month <- 3.0
+treatment_threshold_hospital <- 18
+
+# Convert Month and hospital columns into numeric
+data$month <- as.numeric(data$month)
+data$hospital <- as.numeric(data$hospital)
+
+# Split the data into treated and controlled groups
+treated_group <- data %>%
+  filter(hospital <= treatment_threshold_hospital )
+
+control_group <- data %>%
+  filter(hospital > treatment_threshold_hospital )
+```
+#### **Mean Difference between treatment and control group BEFORE treatment **
+```{r}
+before_control_mean <- control_group %>% 
+  filter(month <= introduction_month) %>%
+  summarise(mean_satisfaction = mean(satis)) %>%
+  pull(mean_satisfaction)
+
+before_treatment_mean  <- treated_group %>% 
+  filter(month <= introduction_month) %>%
+  summarise(mean_satisfaction = mean(satis)) %>%
+  pull(mean_satisfaction)
+
+mean_diff_before <- before_treatment_mean - before_control_mean
+```
+#### **Mean Difference between treatment and control group AFTER treatment **
+```{r}
+# Mean Difference between treatment and control group AFTER treatment
+after_control_mean <- control_group %>% 
+  filter(month > introduction_month) %>%
+  summarise(mean_satisfaction = mean(satis)) %>%
+  pull(mean_satisfaction)
+
+after_treatment_mean <- treated_group %>% 
+  filter(month > introduction_month) %>%
+  summarise(mean_satisfaction = mean(satis)) %>%
+  pull(mean_satisfaction)
+
+mean_diff_after <- after_treatment_mean - after_control_mean
+
+# Difference-in-differences
+mean_diff_diff <- mean_diff_after - mean_diff_before
+```
+# **Part2**
+#### **Use linear regression to compute the estimate with group and time fixed effects **
+```{r}
+# Fit the linear regression model
+model <- lm(satis ~ procedure * as.factor(month)+ as.factor(hospital), data)
+
+# Print the results
+summary(model)
+```

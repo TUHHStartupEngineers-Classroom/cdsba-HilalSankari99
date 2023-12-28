@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Oliver Mork">
+<meta name="author" content="Hilal Sankari">
 
-<title>MyLabJournal - Probability_Assignment1</title>
+<title>MyLabJournal - Probability- Assignment1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -43,6 +77,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -63,6 +100,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -152,19 +192,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Contents</h2>
    
   <ul class="collapse">
-  <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link active" data-scroll-target="#text-formatting"><span class="header-section-number">1</span> Text Formatting</a></li>
-  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="header-section-number">2</span> Headings</a>
-  <ul class="collapse">
-  <li><a href="#header-2" id="toc-header-2" class="nav-link" data-scroll-target="#header-2"><span class="header-section-number">2.1</span> Header 2</a></li>
-  </ul></li>
-  <li><a href="#links-images" id="toc-links-images" class="nav-link" data-scroll-target="#links-images"><span class="header-section-number">3</span> Links &amp; Images</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">4</span> Lists</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">5</span> Tables</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">6</span> Source Code</a></li>
-  <li><a href="#define-probabilities" id="toc-define-probabilities" class="nav-link" data-scroll-target="#define-probabilities"><span class="header-section-number">7</span> Define probabilities</a></li>
-  <li><a href="#calculate-complementary-probabilities" id="toc-calculate-complementary-probabilities" class="nav-link" data-scroll-target="#calculate-complementary-probabilities"><span class="header-section-number">8</span> Calculate complementary probabilities</a></li>
-  <li><a href="#calculate-conditional-probabilities" id="toc-calculate-conditional-probabilities" class="nav-link" data-scroll-target="#calculate-conditional-probabilities"><span class="header-section-number">9</span> Calculate conditional probabilities</a></li>
-  <li><a href="#print-the-results" id="toc-print-the-results" class="nav-link" data-scroll-target="#print-the-results"><span class="header-section-number">10</span> Print the results</a></li>
+  <li><a href="#assignment1" id="toc-assignment1" class="nav-link active" data-scroll-target="#assignment1"><span class="header-section-number">1</span> <strong>Assignment1</strong></a></li>
+  <li><a href="#assignment2" id="toc-assignment2" class="nav-link" data-scroll-target="#assignment2"><span class="header-section-number">2</span> <strong>Assignment2</strong></a></li>
+  <li><a href="#assignment2-1" id="toc-assignment2-1" class="nav-link" data-scroll-target="#assignment2-1"><span class="header-section-number">3</span> <strong>Assignment2</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Probability_Assignment1</h1>
+<h1 class="title">Probability- Assignment1</h1>
 </div>
 
 
@@ -183,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Oliver Mork </p>
+             <p>Hilal Sankari </p>
           </div>
   </div>
     
@@ -194,161 +224,230 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<hr>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-1_dbb84d4b1bcf1f7ee8b70378e5d82043">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load Libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<section id="assignment1" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <strong>Assignment1</strong></h1>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-2_450015afca3fb5ede531585215e727ad">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Define probabilities</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>P_S <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>P_T_S <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>P_T_S_Bar <span class="ot">&lt;-</span> <span class="fl">0.6</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Calculate complementary probabilities</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>P_S_Bar <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_S</span>
+<span id="cb2-8"><a href="#cb2-8"></a>P_T_Bar_S <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_T_S</span>
+<span id="cb2-9"><a href="#cb2-9"></a>P_T_Bar_S_Bar <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_T_S_Bar</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Calculate conditional probabilities</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>P_T_inter_S <span class="ot">&lt;-</span> P_S <span class="sc">*</span> P_T_S</span>
+<span id="cb2-13"><a href="#cb2-13"></a>P_T_inter_S_Bar <span class="ot">&lt;-</span> P_S_Bar <span class="sc">*</span> P_T_S_Bar</span>
+<span id="cb2-14"><a href="#cb2-14"></a>P_T_Bar_inter_S <span class="ot">&lt;-</span> P_S <span class="sc">*</span> P_T_Bar_S</span>
+<span id="cb2-15"><a href="#cb2-15"></a>P_T_Bar_inter_S_Bar <span class="ot">&lt;-</span> P_S_Bar <span class="sc">*</span> P_T_Bar_S_Bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="assignment1-results" class="level4">
+<h4 class="anchored" data-anchor-id="assignment1-results"><strong>Assignment1 Results</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-3_96d2fc6f232c0d816c72ff7350ec059d">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span>(<span class="st">"P_T_inter_S:"</span>,P_T_inter_S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; P_T_inter_S: 0.06</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">cat</span>(<span class="st">"P_T_inter_S_Bar"</span>,P_T_inter_S_Bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; P_T_inter_S_Bar 0.42</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cat</span>(<span class="st">"P_T_Bar_inter_S"</span>,P_T_Bar_inter_S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; P_T_Bar_inter_S 0.24</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">cat</span>(<span class="st">"P_T_Bar_inter_S_Bar"</span>,P_T_Bar_inter_S_Bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; P_T_Bar_inter_S_Bar 0.28</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>You can delete everything in here and start fresh.</p>
+</section>
+</section>
+<section id="assignment2" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> <strong>Assignment2</strong></h1>
+<section id="fill-in-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="fill-in-the-dataset"><strong>Fill in the Dataset</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-4_ed526d3a8d0a2ec73a720ffd7845a4fb">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Number of obervations</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># Create tibble</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>app_usage <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="co"># Create user_id in increasing order</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="at">user_id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="co"># Randomly sample if smartphone was used</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="at">smartphone =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="co"># Sample if tablet was used. More likely if smartphone was not used.</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="at">tablet =</span> <span class="fu">ifelse</span>(smartphone <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)),</span>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="co"># Sample if computer was used. More likely if tablet was not used.</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="at">computer =</span> <span class="fu">ifelse</span>(tablet <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>))</span>
+<span id="cb11-14"><a href="#cb11-14"></a>)</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="co"># If no device has value of 1, we set smartphone to 1</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>app_usage <span class="ot">&lt;-</span> app_usage <span class="sc">%&gt;%</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-18"><a href="#cb11-18"></a>  <span class="fu">mutate</span>(<span class="at">smartphone =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(smartphone, tablet, computer) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, smartphone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preview-of-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="preview-of-the-dataset"><strong>Preview of the Dataset</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-5_497bca726257bd8c92f3b8d790132d64">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Show first ten lines</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["user_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["smartphone"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["tablet"],"name":[3],"type":["int"],"align":["right"]},{"label":["computer"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"0","3":"1","4":"0"},{"1":"2","2":"1","3":"0","4":"0"},{"1":"3","2":"1","3":"0","4":"0"},{"1":"4","2":"0","3":"1","4":"0"},{"1":"5","2":"0","3":"1","4":"0"},{"1":"6","2":"0","3":"0","4":"1"},{"1":"7","2":"1","3":"0","4":"1"},{"1":"8","2":"0","3":"0","4":"1"},{"1":"9","2":"1","3":"0","4":"0"},{"1":"10","2":"1","3":"0","4":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<p>This is a <code>.qmd</code> file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a # in front of your text, it will create a top level-header.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-<section id="text-formatting" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Text Formatting</h1>
-<p><em>italics</em> and <strong>bold</strong></p>
-<p>superscript<sup>2</sup> / subscript<sub>2</sub></p>
-<p><del>strikethrough</del></p>
-<p><code>verbatim code</code></p>
-<blockquote class="blockquote">
-<p>Blockquote</p>
-</blockquote>
+</div>
 </section>
-<section id="headings" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Headings</h1>
-<section id="header-2" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="header-2"><span class="header-section-number">2.1</span> Header 2</h2>
-<section id="header-3" class="level3">
-<h3 class="anchored" data-anchor-id="header-3">Header 3</h3>
-<section id="header-4" class="level4">
-<h4 class="anchored" data-anchor-id="header-4">Header 4</h4>
-<section id="header-5" class="level5">
-<h5 class="anchored" data-anchor-id="header-5">Header 5</h5>
-<section id="header-6" class="level6">
-<h6 class="anchored" data-anchor-id="header-6">Header 6</h6>
+<section id="show-column-sums" class="level4">
+<h4 class="anchored" data-anchor-id="show-column-sums"><strong>Show column sums</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-6_15001e961f29b99ca325e91557b15397">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    user_id smartphone     tablet   computer 
+#&gt;     500500        598        377        235</code></pre>
+</div>
+</div>
 </section>
+<section id="create-the-sets-needed" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-sets-needed"><strong>Create the sets needed</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-7_a18521058a8a40f3a0c08c595e59fe7d">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Set of phone, tablet and computer users</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co"># List of all sets</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="load-additional-package-for-plotting-venn-diagrams" class="level4">
+<h4 class="anchored" data-anchor-id="load-additional-package-for-plotting-venn-diagrams"><strong>Load additional package for plotting Venn diagrams</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-8_a9b6ad4012dacef34239e692a7fe6214">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(ggVennDiagram)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-</section>
-</section>
-</section>
-<section id="links-images" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Links &amp; Images</h1>
-<p><a href="https://quarto.org" class="uri">https://quarto.org</a></p>
-<p><a href="https://quarto.org">Quarto</a></p>
+<section id="plot-venn-diagram" class="level4">
+<h4 class="anchored" data-anchor-id="plot-venn-diagram"><strong>Plot Venn Diagram</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-9_78572e605c36ab21a7123b4ebd628bba">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>),</span>
+<span id="cb17-2"><a href="#cb17-2"></a>              <span class="at">label_percent_digit =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="co"># Customizing appearance</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
+<span id="cb17-5"><a href="#cb17-5"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> .<span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../assets/img/elephant.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Caption</figcaption>
+<p><a href="01_probability_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_probability_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://quarto.org"><img src="../../assets/img/DAG1.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Caption</figcaption>
-</figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://quarto.org" title="An elephant"><img src="../../assets/img/elephant.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Caption</figcaption>
-</figure>
 </div>
 </section>
-<section id="lists" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Lists</h1>
-<ul>
-<li><p>unordered list</p>
-<ul>
-<li>sub-item 1</li>
-<li>sub-item 2
-<ul>
-<li>sub-sub-item 1</li>
-</ul></li>
-</ul></li>
-<li><p>item 2</p>
-<p>Continued (indent 4 spaces)</p></li>
-</ul>
-<ol type="1">
-<li>ordered list</li>
-<li>item 2
-<ol type="i">
-<li>sub-item 1
-<ol type="A">
-<li>sub-sub-item 1</li>
-</ol></li>
-</ol></li>
-</ol>
-<ol class="example" type="1">
-<li>A list whose numbering</li>
-</ol>
-<p>continues after</p>
-<ol start="2" class="example" type="1">
-<li>an interruption</li>
-</ol>
+<section id="assignment-2-results" class="level4">
+<h4 class="anchored" data-anchor-id="assignment-2-results"><strong>Assignment 2 Results</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-10_0de1583a4d308557167c2bb1c3cdbce9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calculate the intersection of sets (users using all three devices)</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>set_all_three <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(intersect, sets_all)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>percentage_all_three <span class="ot">&lt;-</span> <span class="fu">length</span>(set_all_three) <span class="sc">/</span> n <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">cat</span>(<span class="st">"Percentage of customers using all three devices:"</span>, <span class="fu">round</span>(percentage_all_three, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Percentage of customers using all three devices: 0.4 %</code></pre>
+</div>
+</div>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-11_f26960a2dd6256097b66510a0d202045">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Calculate the union of sets (users using at least two devices)</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>set_at_least_two <span class="ot">&lt;-</span> <span class="fu">union</span>(<span class="fu">intersect</span>(set_phon, set_tabl), <span class="fu">union</span>(<span class="fu">intersect</span>(set_phon, set_comp), <span class="fu">intersect</span>(set_comp, set_tabl)))</span>
+<span id="cb20-3"><a href="#cb20-3"></a>percentage_at_least_two <span class="ot">&lt;-</span> <span class="fu">length</span>(set_at_least_two) <span class="sc">/</span> n <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">cat</span>(<span class="st">"Percentage of customers using at least two devices:"</span>, <span class="fu">round</span>(percentage_at_least_two, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Percentage of customers using at least two devices: 20.6 %</code></pre>
+</div>
+</div>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-12_04ea9c9fd71cfccb267e9b64800d0d04">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Calculate the sets of users using each device exclusively</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>set_only_phon <span class="ot">&lt;-</span> set_phon[<span class="sc">!</span>(set_phon <span class="sc">%in%</span> set_tabl) <span class="sc">&amp;</span> <span class="sc">!</span>(set_phon <span class="sc">%in%</span> set_comp)]</span>
+<span id="cb22-3"><a href="#cb22-3"></a>set_only_tabl <span class="ot">&lt;-</span> set_tabl[<span class="sc">!</span>(set_tabl <span class="sc">%in%</span> set_phon) <span class="sc">&amp;</span> <span class="sc">!</span>(set_tabl <span class="sc">%in%</span> set_comp)]</span>
+<span id="cb22-4"><a href="#cb22-4"></a>set_only_comp <span class="ot">&lt;-</span> set_comp[<span class="sc">!</span>(set_comp <span class="sc">%in%</span> set_phon) <span class="sc">&amp;</span> <span class="sc">!</span>(set_comp <span class="sc">%in%</span> set_tabl)]</span>
+<span id="cb22-5"><a href="#cb22-5"></a>percentage_only_one <span class="ot">&lt;-</span> (<span class="fu">length</span>(set_only_phon) <span class="sc">+</span> <span class="fu">length</span>(set_only_tabl) <span class="sc">+</span> <span class="fu">length</span>(set_only_comp)) <span class="sc">/</span> n <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="fu">cat</span>(<span class="st">"Percentage of customers using only one device:"</span>, <span class="fu">round</span>(percentage_only_one, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Percentage of customers using only one device: 79.4 %</code></pre>
+</div>
+</div>
 </section>
-<section id="tables" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Tables</h1>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Right</th>
-<th style="text-align: left;">Left</th>
-<th>Default</th>
-<th style="text-align: center;">Center</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">12</td>
-<td>12</td>
-<td style="text-align: center;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">123</td>
-<td style="text-align: left;">123</td>
-<td>123</td>
-<td style="text-align: center;">123</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1</td>
-<td>1</td>
-<td style="text-align: center;">1</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="source-code" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Source Code</h1>
-<p>Use ``` to delimit blocks of source code:</p>
-<pre><code>code</code></pre>
-<p>Add a language to syntax highlight code blocks:</p>
-<p>library(tidyverse)</p>
+<section id="assignment2-1" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> <strong>Assignment2</strong></h1>
+<section id="initialize-data" class="level4">
+<h4 class="anchored" data-anchor-id="initialize-data"><strong>Initialize data</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-13_312137a0b4c4a11c3951f3aa67dbc7e8">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>P_A <span class="ot">&lt;-</span> <span class="fl">0.04</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>P_B_A <span class="ot">&lt;-</span> <span class="fl">0.97</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>P_B_A_Bar <span class="ot">&lt;-</span> <span class="fl">0.99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="define-probabilities" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Define probabilities</h1>
-<p>P_S &lt;- 0.3 P_T_S &lt;- 0.2 P_T_S_Bar &lt;- 0.6</p>
+<section id="calculation" class="level4">
+<h4 class="anchored" data-anchor-id="calculation"><strong>Calculation</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-14_e88c7cff6a2f2ee74fa90be3945646ed">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>P_A_Bar <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span> P_A</span>
+<span id="cb25-2"><a href="#cb25-2"></a>P_B_Bar_A <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_B_A</span>
+<span id="cb25-3"><a href="#cb25-3"></a>P_B_Bar_A_Bar <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_B_A_Bar</span>
+<span id="cb25-4"><a href="#cb25-4"></a>P_B <span class="ot">&lt;-</span> (P_B_A<span class="sc">*</span>P_A)<span class="sc">+</span>(P_B_A_Bar<span class="sc">*</span>P_A_Bar)</span>
+<span id="cb25-5"><a href="#cb25-5"></a>P_A_Bar_knowing_B <span class="ot">&lt;-</span> (P_B_A_Bar <span class="sc">*</span> P_A_Bar)<span class="sc">/</span>P_B</span>
+<span id="cb25-6"><a href="#cb25-6"></a>P_A_knowing_B <span class="ot">&lt;-</span> (P_B_A <span class="sc">*</span> P_A)<span class="sc">/</span>P_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="calculate-complementary-probabilities" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Calculate complementary probabilities</h1>
-<p>P_S_Bar &lt;- 1 - P_S P_T_Bar_S &lt;- 1 - P_T_S P_T_Bar_S_Bar &lt;- 1 - P_T_S_Bar</p>
-</section>
-<section id="calculate-conditional-probabilities" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Calculate conditional probabilities</h1>
-<p>P_T_inter_S &lt;- P_S * P_T_S P_T_inter_S_Bar &lt;- P_S_Bar * P_T_S_Bar P_T_Bar_inter_S &lt;- P_S * P_T_Bar_S P_T_Bar_inter_S_Bar &lt;- P_S_Bar * P_T_Bar_S_Bar</p>
-</section>
-<section id="print-the-results" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Print the results</h1>
-<p>print(P_T_inter_S) print(P_T_inter_S_Bar) print(P_T_Bar_inter_S) print(P_T_Bar_inter_S_Bar)</p>
+<section id="assignment3-results" class="level4">
+<h4 class="anchored" data-anchor-id="assignment3-results"><strong>Assignment3 Results</strong></h4>
+<div class="cell" data-hash="01_probability_cache/html/unnamed-chunk-15_bb0b895a2920270c85173025503bf0ea">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">print</span>(P_A_Bar_knowing_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.9607764</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">print</span>(P_A_knowing_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.03922362</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -701,6 +800,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});</script>
 
 
 

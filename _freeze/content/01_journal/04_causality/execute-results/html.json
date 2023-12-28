@@ -1,0 +1,18 @@
+{
+  "hash": "e5a501717b1458de2af1fbf51109a45a",
+  "result": {
+    "markdown": "---\ntitle: \"Causality - Assignment 4\"\nauthor: \"Hilal Sankari\"\nformat: \n    html:\n      code-line-numbers: true\n      df-print: paged\n\n---\n\n::: {.callout-important appearance=\"minimal\"}\nthe correlation between the consumption of chocolate and the number of Nobel laureates in a country. While these two variables \nmight seem unrelated, there could be a spurious correlation due to a common third variable, such as the country's level of \n:::\n\n::: {.cell hash='04_causality_cache/html/unnamed-chunk-1_03be1e8039cec1208f191a114edd7a44'}\n\n```{.r .cell-code}\n# Generate a sample dataset (replace this with your actual dataset)\nset.seed(789)\ncountries <- c(\"USA\", \"Sweden\", \"Switzerland\", \"Belgium\", \"Norway\")\nchocolate_consumption <- rnorm(length(countries), mean = 5, sd = 2)\nnobel_laureates <- rpois(length(countries), lambda = 5)\neducation_years <- rnorm(length(countries), mean = 12, sd = 2)\n\n# Create a dataframe\ndata <- data.frame(Country = countries, ChocolateConsumption = chocolate_consumption, NobelLaureates = nobel_laureates, EducationYears = education_years)\n\n# Load necessary libraries\nlibrary(ggplot2)\n\n# Plotting\nggplot(data, aes(x = ChocolateConsumption, y = NobelLaureates, color = EducationYears)) +\n  geom_point() +\n  labs(title = \"Spurious Correlation: Chocolate Consumption vs Nobel Laureates\",\n       x = \"Chocolate Consumption\",\n       y = \"Nobel Laureates\",\n       color = \"Education Years\") +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](04_causality_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n::: {.callout-important appearance=\"minimal\"}\n#In this example, the scatter plot is colored by the average years of education in each country. The idea is to highlight \n#that the correlation between chocolate consumption and Nobel laureates may be influenced by the level of education in a country.\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\r\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

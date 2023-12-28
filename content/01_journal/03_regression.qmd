@@ -1,7 +1,94 @@
 ---
-title: "Regression and Statistical Inference"
----
+title: "Regression and Statistical Inference - Assignment 3"
+author: "Hilal Sankari"
+format: 
+    html:
+      code-line-numbers: true
+      df-print: paged
 
-::: callout-note
-You can delete everything in here and start fresh.
+---
+----
+```{r}
+
+# Load Libraries
+library(dplyr)
+library(modelr)
+```
+```{r}
+# Load data
+# Read data set. Check what folder/path your data is in. 
+car_data <- readRDS("C:/Users/user/Documents/TUHH/Causal/Causal_Data_Science_Data/car_prices.rds")
+```
+# **Part1**
+#### **Number of rows and columns**
+```{r}
+rows_columns <- dim(car_data)
+rows <- rows_columns[1]
+columns <- rows_columns[2]
+```
+#### **Number of rows and columns**
+```{r}
+#| code-fold: true
+cat("Number of rows:", rows, "\n")
+cat("Number of columns:", columns, "\n")
+```
+# **Part2**
+```{r}
+# Extract column names for each data frame in the list
+column_names_list <- lapply(car_data, colnames)
+first_element <- head(car_data$carwidth, 1)
+cat("the type of carwidth is", typeof(first_element), "\n")
+first_element <- head(car_data$carbody, 1)
+cat("the type of carbody is", typeof(first_element), "\n")
+print("There are two types: char and double")
+```
+::: {.callout-important appearance="minimal"}
+Numeric types like double are ideal for quantitative information, while strings and char are useful for textual and categorical information. The key is to accurately represent the real-world attributes of the cars and associated market data in your program.
+:::
+# **Part3**
+#### **Linear Regression**
+```{r}
+glimpse(car_data)
+car_data[] <- lapply(car_data, as.numeric)
+car_data %>%
+  # Calculate the correlation matrix
+  cor() %>% 
+  # Round the correlation values to 2 decimal places
+  round(2) %>% 
+  # Extract the lower triangular part of the matrix
+  Matrix::tril()
+```
+# **Part4.1**
+#### **explain what data type it is and what values it can take on**
+```{r}
+first_element <- head(car_data$enginesize, 1)
+min_value <- min(car_data$enginesize)
+max_value <- max(car_data$enginesize)
+cat("The regressor chosen is the enginesize and it has a type of ", typeof(first_element)," and it ranges between" ,min_value," and ", max_value ,"\n")
+```
+# **Part4.2**
+::: {.callout-important appearance="minimal"}
+It affects the price with a percentage of  89% so it has a big effect, and it effects it with a positive correlation so when the engine size increases the price increases (in a proportional manner).
+:::
+# **Part4.3**
+::: {.callout-important appearance="minimal"}
+As mentioned it affects the price with a 89% , so it does affect it significantly
+:::
+# **Part5**
+#### **Seat Heating**
+```{r}
+cardata_with_seat_heating <- car_data %>%
+  mutate(seat_heatingTRUE = sample(c(TRUE, FALSE), size = nrow(car_data), replace = TRUE))
+
+# Check the distribution of seat_heatingTRUE
+table(cardata_with_seat_heating$seat_heatingTRUE)
+
+# Run the regression again
+linear_model <- lm(price ~ seat_heatingTRUE, data = cardata_with_seat_heating)
+
+# Print the summary of the linear model
+summary(linear_model)
+```
+::: {.callout-important appearance="minimal"}
+If all the values are assigned as true there will be no variability, and which can lead to issues in regression analysis, including collinearity problems and difficulties in estimating coefficients.
 :::
